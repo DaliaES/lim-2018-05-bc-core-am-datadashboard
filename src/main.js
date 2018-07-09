@@ -23,7 +23,7 @@ llenarlista=(ulId,classLi,element,html)=>{
   const list = document.getElementById(ulId);
   const liCohorts = document.createElement('li');
   liCohorts.setAttribute('id', element.id);
-  liCohorts.setAttribute('class',classLi)
+  liCohorts.setAttribute('class',classLi);
   liCohorts.innerHTML = html;
   list.appendChild(liCohorts);
 }
@@ -36,9 +36,9 @@ cohorts.addEventListener('click', (event) => {
     navigatingBar.classList.replace('show', 'hide');
     laboratoria2.classList.replace('hide', 'show');
     // for of que recorre array de json cohorts
-    listCohort.setCohort(getCohortsUsers())
+    listCohort.setCohort(getCohortsUsers());
     for (const cohort of listCohort.getCohorts()) {  
-      llenarlista("lista-cohorts",'elem-cohort',cohort,cohort.id)
+      llenarlista("lista-cohorts",'elem-cohort',cohort,cohort.id);
       if(cohort.id === 'lim-2018-03-pre-core-pw'){
         addEventToCohortElem(document.getElementById(cohort.id),cohort.id,listCohort);
       }
@@ -53,7 +53,7 @@ window.addEventToCohortElem = (elem,cohortId,listCohort) => {
     ServiceApiRequest(urlUser,()=>{
       listUser.setUsers(getCohortsUsers());
       for (const student of listUser.getUsers()) {
-        llenarlista("list-students","elem-student",student,student.name)
+        llenarlista("list-students","elem-student",student,student.name);
         addEventToUserElem(document.getElementById(student.id),cohortId,listCohort,listUser);
       }
     })
