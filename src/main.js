@@ -63,30 +63,6 @@ const hideTabs = (tab1, tab2, tab3 = '', tab4 = '') => {
 // funcion para crear listas
 let createList = (ulId, classLi, element, html) => {
   const list = document.getElementById(ulId);
-<<<<<<< HEAD
-  const liCohorts = document.createElement('li');
-  liCohorts.setAttribute('id', element.id);
-  liCohorts.setAttribute('class',classLi);
-  liCohorts.innerHTML = html;
-  list.appendChild(liCohorts);
-}
-// agregar evento a boton LIMA (aparece lista de cohorts/promociones)
-cohorts.addEventListener('click', (event) => {
-  event.preventDefault(); 
-  // funcion para obtener lista de cohorts/promociones
-  ServiceApiRequest(urlCohort,()=>{
-    laboratoria2.classList.replace('hide', 'show');
-    navigatingBar.classList.replace('show', 'hide');
-    laboratoria2.classList.replace('hide', 'show');
-    // for of que recorre array de json cohorts
-    listCohort.setCohort(getCohortsUsers());
-    for (const cohort of listCohort.getCohorts()) {  
-      llenarlista("lista-cohorts",'elem-cohort',cohort,cohort.id);
-      if(cohort.id === 'lim-2018-03-pre-core-pw'){
-        addEventToCohortElem(document.getElementById(cohort.id),cohort.id,listCohort);
-      }
-    };
-=======
   const elementLi = document.createElement('li');
   elementLi.setAttribute('id', element.id);
   elementLi.setAttribute('class', classLi);
@@ -115,27 +91,11 @@ const listOfCohorts = (id) => {
         createList("lista-cohorts", 'elem-cohort', cohort, cohort.id);
       };
     });
->>>>>>> ead1127bf5c001f021c561319903cf2c72691371
   });
 };
 menuSedes.addEventListener("click", (event) => {
   listOfCohorts(event.target.id);
 });
-<<<<<<< HEAD
-// agregar evento a un cohort(lim-2018-03-pre-core-pw)
-window.addEventToCohortElem = (elem,cohortId,listCohort) => {
-  elem.addEventListener('click', (event) => {
-    event.preventDefault();
-    // funcion para recorrer json users(obtener nombres de estudiantes)
-    ServiceApiRequest(urlUser,()=>{
-      listUser.setUsers(getCohortsUsers());
-      for (const student of listUser.getUsers()) {
-        llenarlista("list-students","elem-student",student,student.name);
-        addEventToUserElem(document.getElementById(student.id),cohortId,listCohort,listUser);
-      }
-    })
-  })
-=======
 optionPromocion.addEventListener("click", (event) => {
   listOfCohorts(event.target.id);
 });
@@ -153,7 +113,6 @@ const listOfStudent = (n) => {
       };
     });
   });
->>>>>>> ead1127bf5c001f021c561319903cf2c72691371
 };
 ulCohorts.addEventListener("click", (event) => {
   options.cohort.forEach(cohort => {
