@@ -91,21 +91,18 @@ let createListUser = (ulId, classLi, element, html) => {
   const elementLi = document.createElement('li');
   const contenedor = document.createElement('div');
   const spanName = document.createElement('span');
+  spanName.setAttribute("class","names")
   const divpercent = document.createElement('div');
-  /*
-  const ulElemnt = document.createElement('ul');
-  const liElemnt = document.createElement('li');
-  */
-  spanName.innerHTML = html  
+  const contenLis = document.createElement('div');
+  spanName.innerHTML = html.toUpperCase()
   elementLi.setAttribute('id', element.id);
   elementLi.setAttribute('class', classLi);  
   divpercent.setAttribute('class', 'li-conteiner');
   divpercent.innerHTML = 'Porcentaje Total :'+ element.stats.percent;
-  const contenLis = document.createElement('div');
   contenLis.setAttribute('class','conteiner');
-  contenLis.appendChild(createDivconteiner('Ejercicios:','li-conteine',element.stats.exercises));
-  contenLis.appendChild(createDivconteiner('Reads:','li-conteine',element.stats.reads));
-  contenLis.appendChild(createDivconteiner('Quizzes:','li-conteine',element.stats.quizzes));
+  contenLis.appendChild(createDivconteiner('<b>Ejercicios:</b>','li-conteine',element.stats.exercises));
+  contenLis.appendChild(createDivconteiner('<b>Reads:','li-conteine',element.stats.reads));
+  contenLis.appendChild(createDivconteiner('<b>Quizzes:','li-conteine',element.stats.quizzes));
   contenedor.appendChild(spanName);
   contenedor.appendChild(divpercent);
   contenedor.appendChild(contenLis);
@@ -119,8 +116,8 @@ const options = {
     users: [],
     progress: [],
   },
-  orderBy: 'name',
-  orderDirection: 'asc',
+  orderBy: '',
+  orderDirection: '',
   search: ''
 };
 // funcion para listar cohorts
@@ -171,7 +168,9 @@ ulCohorts.addEventListener('click', (event) => {
   });
   ServiceApiRequest(urlProgress, () => {
     listProgress.setProgres(getProgress());
+    options.cohortData.progress= getProgress()
   });
+  // console.log(options)
   listOfStudent(event.target.id);
   //listOfProgress();
 });
@@ -184,11 +183,11 @@ optionEstudiantes.addEventListener('click', (event) => {
 // funcion para filtrar usuarios
 const filter = (value) => {
   ServiceApiRequest(urlUser, () => {
-    let Lis = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses());
-
-    listUser.setUsers(filterUsers(Lis, value));
     ulStudents.innerHTML = '';
- 
+    listUser.setUsers(getUsers());
+    let Lis = computeUsersStats(listUser.getNewUsers(), listProgress.getNewProgress(), listCohort.getCourses());
+    let listFilter = filterUsers(Lis, value)  
+    listUser.setUsers(listFilter);
     listUser.getNewUsers().forEach(student => {
       if (student.role === 'student') {
         createListUser('list-students', 'elem-student', student, student.name);
