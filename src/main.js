@@ -55,9 +55,9 @@ const asc = document.getElementById('asc');
 const hideTabs = (tab1, tab2, tab3 = '', tab4 = '') => {
   tab1.classList.replace('show', 'hide');
   tab2.classList.replace('hide', 'show');
-  if (tab3 != '') {
+  if (tab3 !== '') {
     tab3.classList.replace('hide', 'show');
-  } else if (tab4 != '') {
+  } else if (tab4 !== '') {
     tab4.classList.replace('show', 'hide');
   };
 };
@@ -98,7 +98,7 @@ let createListUser = (ulId, classLi, element, html) => {
   elementLi.setAttribute('id', element.id);
   elementLi.setAttribute('class', classLi);
   divpercent.setAttribute('class', 'li-conteiner');
-  divpercent.innerHTML = 'Porcentaje Total :' + element.stats.percent;
+  divpercent.innerHTML = 'Porcentaje Total : ' + element.stats.percent;
   contenLis.setAttribute('class', 'conteiner');
   contenLis.appendChild(createDivconteiner('<b>Reads:', 'li-conteine', element.stats.reads));
   contenLis.appendChild(createDivconteiner('<b>Ejercicios:</b>', 'li-conteine', element.stats.exercises));
@@ -141,7 +141,7 @@ const listOfStudent = (n) => {
     Lis.forEach(student => {
       options.cohortData.users.push(student);
       if (student.signupCohort === n) {
-        if (student.role == 'student') {
+        if (student.role === 'student') {
           createListUser('list-students', 'elem-student', student, student.name);
         };
       };

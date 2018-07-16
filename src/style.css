@@ -500,15 +500,20 @@ text-align: center;
   }
   .user, .password {
     font-size: 15px;
+    margin-bottom: 1%;
   }
   #user, #password {
-  font-size: 12px;
-  margin-bottom: 8%;
+  font-size: 13px;
+  margin-bottom: 9%;
+  padding: 0;
+  }
+  #user {
+    margin-bottom: 3%;
   }
   .logging {
-    font-size: 13px;
+    font-size: 11px;
     margin-top: 0;
-    width: 60%;
+    width: 47.5%;
   }
   .welcome {
     font-size: 130%;
