@@ -16,23 +16,23 @@ window.computeUsersStats = (users, progress, courses) => {
 window.sortUsers = (users, orderBy, orderDireccion) => {
   listUser.setUsers(users);
   if (orderBy == 'stats.percent') {
-    let res = orderBy.split(".");
+    let res = orderBy.split('.');
     return sortFunction(res[1], orderDireccion, 2);
   } else if (
     orderBy == 'stats.exercises.percent') {
-    let res = orderBy.split(".");
+    let res = orderBy.split('.');
     return sortFunction(res[2], orderDireccion, 3);
   } else if (
     orderBy == 'stats.reads.percent') {
-    let res = orderBy.split(".");
+    let res = orderBy.split('.');
     return sortFunction(res[2], orderDireccion, 4);
   } else if (
     orderBy == 'stats.quizzes.percent') {
-    let res = orderBy.split(".");
+    let res = orderBy.split('.');
     return sortFunction(res[2], orderDireccion, 5);
   } else if (
     orderBy == 'stats.quizzes.scoreAvg') {
-    let res = orderBy.split(".");
+    let res = orderBy.split('.');
     return sortFunction(res[2], orderDireccion, 5);
   } else {
     return sortFunction(orderBy, orderDireccion, 1);
@@ -70,7 +70,7 @@ window.listCohort = {
   getCourses: () => {
     let courses = [];
     let getIntro = listCohort.cohorts.map(cohort => {
-      if (cohort.id == "lim-2018-03-pre-core-pw") {
+      if (cohort.id == 'lim-2018-03-pre-core-pw') {
         courses = Object.keys(cohort.coursesIndex);
       };
     });
@@ -98,7 +98,7 @@ window.listProgress = {
   },
   getIntro: (id, courses) => {
     for (let course in courses) {
-      if (typeof listProgress.progress[id][courses[course]] !== "undefined") {
+      if (typeof listProgress.progress[id][courses[course]] !== 'undefined') {
         return listProgress.progress[id][courses[course]];
       };
     };
@@ -109,10 +109,10 @@ window.listProgress = {
 let getPart = (intro) => {
   let list = [];
   for (let units in intro) {
-    if (units == "units") {
+    if (units == 'units') {
       for (let unit in intro[units]) {
         for (let parts in intro[units][unit]) {
-          if (parts == "parts") {
+          if (parts == 'parts') {
             list.push(intro[units][unit][parts]);
           };
         };
@@ -129,7 +129,7 @@ window.getExersicesById = (id, courses) => {
   let parts = getPart(intro).map(parts => {
     for (let part in parts) {
       for (let elem in parts[part]) {
-        if (elem == "exercises") {
+        if (elem == 'exercises') {
           const exercises = parts[part][elem];
           for (let exercise in exercises) {
             totalExercises++;
@@ -154,9 +154,9 @@ window.getReadsById = (id, courses) => {
   const intro = listProgress.getIntro(id, courses);
   const parts = getPart(intro).map(parts => {
     for (let part in parts) {
-      if (parts[part]["type"] === "read") {
+      if (parts[part]['type'] === 'read') {
         totalReads++;
-        if (parts[part]["completed"] === 1) {
+        if (parts[part]['completed'] === 1) {
           completedReads++;
         };
       };
@@ -176,12 +176,12 @@ window.getQuizzesById = (id, courses) => {
   const intro = listProgress.getIntro(id, courses);
   const parts = getPart(intro).map(parts => {
     for (let part in parts) {
-      if (parts[part]["type"] === "quiz") {
+      if (parts[part]['type'] === 'quiz') {
         totalQuizzes++;
-        if (parts[part]["completed"] === 1) {
+        if (parts[part]['completed'] === 1) {
           completedQuizzes++;
         };
-        if ((parts[part]).hasOwnProperty("score")) {
+        if ((parts[part]).hasOwnProperty('score')) {
           scoreSumQuizzes += parts[part].score;
         };
       };
@@ -225,10 +225,10 @@ window.sortFunction = (OrderBy, OrderDirection, level = 1) => {
     };
     if (level == 3) {
       nombre1 = a.stats.exercises;
-      if (a["stats"]["exercises"]) {
-        nombre1 = a["stats"]["exercises"][OrderBy];
+      if (a['stats']['exercises']) {
+        nombre1 = a['stats']['exercises'][OrderBy];
       };
-      if (b["stats"]["exercises"]) {
+      if (b['stats']['exercises']) {
         nombre2 = b['stats']['exercises'][OrderBy];
       };
     };

@@ -79,7 +79,7 @@ let createDivconteiner = (title, classDivConteiner, listaData) => {
   for (let item in listaData) {
     let liElemnt = document.createElement('li');
     liElemnt.setAttribute('class', 'li-title');
-    liElemnt.innerHTML = item + " : " + listaData[item]
+    liElemnt.innerHTML = item + ' : ' + listaData[item]
     ulElemnt.appendChild(liElemnt);
   }
   divElemnt.appendChild(ulElemnt);
@@ -91,7 +91,7 @@ let createListUser = (ulId, classLi, element, html) => {
   const elementLi = document.createElement('li');
   const contenedor = document.createElement('div');
   const spanName = document.createElement('span');
-  spanName.setAttribute("class", "names")
+  spanName.setAttribute('class', 'names')
   const divpercent = document.createElement('div');
   const contenLis = document.createElement('div');
   spanName.innerHTML = html.toUpperCase()
